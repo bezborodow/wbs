@@ -1,3 +1,4 @@
+import re
 import unittest
 from src.wbs import CodingScheme
 
@@ -54,9 +55,20 @@ class TestWorkBreakdownStructure(unittest.TestCase):
         for element in scheme:
             actual.append(f'{element.number} {element.name}')
 
+        element = scheme.get([2, 1, 4])
+        self.assertEqual('2.1.4', element.number)
+        self.assertEqual('Radar S/W', element.name)
+        self.assertEqual(element, scheme.get('2.1.4'))
+
         self.assertEqual(16, len(actual))
         for i, line in enumerate(actual):
             self.assertEqual(expected[i], actual[i])
+            m = re.match(r'^([0-9.]+) (.*)$', line)
+            number = m.group(1)
+            name = m.group(2)
+            element = scheme.get(number)
+            self.assertEqual(number, element.number)
+            self.assertEqual(name, element.name)
 
 
 if __name__ == '__main__':
