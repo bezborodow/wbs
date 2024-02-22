@@ -3,6 +3,14 @@ from src.wbs import CodingScheme
 
 
 class TestWorkBreakdownStructure(unittest.TestCase):
+    def lines(self, text):
+        '''
+        Returns a list of lines from a multiline string with
+        whitespace removed.
+        '''
+        return list(map(lambda l: l.strip(), text.splitlines()))[1:-1]
+
+
     def test_scheme(self):
         scheme = CodingScheme()
         scheme.append(0, 'Aircraft System')
@@ -22,8 +30,33 @@ class TestWorkBreakdownStructure(unittest.TestCase):
         scheme.append(2, 'Antenna')
         scheme.append(2, 'Radar S/W')
 
+        expected = self.lines('''
+            1 Aircraft System
+            1.1 Air Vehicle
+            1.1.1 Air Frame
+            1.1.2 Propulsion
+            1.1.3 Application Software
+            1.2 SE Program Mgmt
+            1.3 System T&E
+            1.3.1 DT&E
+            1.3.2 OT&E
+            1.3.3 Mockups
+            2 Fire Control
+            2.1 Radar
+            2.1.1 Receiver
+            2.1.2 Transmitter
+            2.1.3 Antenna
+            2.1.4 Radar S/W
+        ''')
+        self.assertEqual(16, len(expected))
+
+        actual = []
         for element in scheme:
-            print(element)
+            actual.append(f'{element.number} {element.name}')
+
+        self.assertEqual(16, len(actual))
+        for i, line in enumerate(actual):
+            self.assertEqual(expected[i], actual[i])
 
 
 if __name__ == '__main__':

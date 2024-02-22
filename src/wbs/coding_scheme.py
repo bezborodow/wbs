@@ -22,6 +22,11 @@ class CodingScheme(Node):
 
 
     def append(self, level, name, data=None):
+        '''
+        Append a new element to the WBS.
+        0 is the top level.
+        '''
+
         if len(self.a) - 1 > level:
             n = len(self.a) - 1 - level
             del self.a[-n:]
