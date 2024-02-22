@@ -44,3 +44,14 @@ class CodingScheme(Node):
             self.children.append(element)
         else:
             self.get(self.a[:-1]).append(element)
+
+
+    @classmethod
+    def fromfile(cls, file):
+        scheme = cls()
+        for line in file:
+            line = line.rstrip().expandtabs(4)
+            level = line.count('    ')
+            name = line.lstrip()
+            scheme.append(level, name)
+        return scheme

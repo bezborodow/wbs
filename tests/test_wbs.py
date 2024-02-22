@@ -46,5 +46,18 @@ class TestWorkBreakdownStructure(unittest.TestCase):
                 i += 1
 
 
+    def test_fromfile(self):
+        with open('tests/data/TAXONOMY', 'r') as file:
+            scheme = CodingScheme.fromfile(file)
+
+            element = scheme.get('4.2.5')
+            self.assertEqual('4.2.5', element.number)
+            self.assertEqual('Validation', element.name)
+
+
+            self.assertEqual('Profit', scheme.get('4.3.1').name)
+            self.assertEqual('Systems Integration Testing', scheme.get('5.1').name)
+
+
 if __name__ == '__main__':
     unittest.main()
