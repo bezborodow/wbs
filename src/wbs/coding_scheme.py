@@ -1,20 +1,13 @@
 from dataclasses import dataclass
-
-
-class Node:
-    def get(self, number):
-        if not isinstance(number, list):
-            number = list(map(int, reversed(number.split('.'))))
-        e = self.children[number.pop() - 1]
-        if number:
-            return e.get(number)
-        return e
+from .node import Node
+from .element import Element
 
 
 @dataclass
 class CodingScheme(Node):
     children: list = None
     elements: list = None
+
 
     def __post_init__(self):
         if self.children is None:
@@ -23,8 +16,10 @@ class CodingScheme(Node):
             self.elements = []
         self.a = []
 
+
     def __iter__(self):
         return iter(self.elements)
+
 
     def append(self, level, name, data=None):
         if len(self.a) - 1 > level:
@@ -44,21 +39,3 @@ class CodingScheme(Node):
             self.children.append(element)
         else:
             self.get(self.a[:-1]).append(element)
-
-
-@dataclass
-class Element(Node):
-    name: str
-    number: str
-    level: int
-    data: dict = None
-    children: list = None
-
-    def __post_init__(self):
-        if self.children is None:
-            self.children = []
-        if self.data is None:
-            self.data = {}
-
-    def append(self, element):
-        self.children.append(element)

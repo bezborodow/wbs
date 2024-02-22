@@ -6,12 +6,14 @@ authors = [
 ]
 description = "Work breakdown structures."
 readme = "README.md"
+license = {file = "LICENSE"}
 requires-python = ">=3.7"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+keywords = ["wbs"]
 
 [project.urls]
 "Homepage" = "https://github.com/bezborodow/wbs"
