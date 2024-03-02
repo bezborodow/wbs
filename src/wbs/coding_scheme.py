@@ -21,7 +21,7 @@ class CodingScheme(Node):
         return iter(self.elements)
 
 
-    def append(self, level, name, data=None):
+    def append(self, name, level=0, data=None):
         '''
         Append a new element to the WBS.
         0 is the top level.
@@ -53,5 +53,5 @@ class CodingScheme(Node):
             line = line.rstrip().expandtabs(4)
             level = line.count('    ')
             name = line.lstrip()
-            scheme.append(level, name)
+            scheme.append(name, level)
         return scheme
