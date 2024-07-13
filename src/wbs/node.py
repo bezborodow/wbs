@@ -2,6 +2,8 @@ class Node:
     def get(self, number):
         '''
         Get a node based on the number.
+
+        For example, get the node 1.32.2.
         '''
 
         # Convert number string '1.32.2' to [1, 32, 2]

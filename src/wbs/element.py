@@ -19,4 +19,8 @@ class Element(Node):
 
 
     def append(self, element):
+        '''
+        Append a child element to this element.
+        '''
+
         self.children.append(element)

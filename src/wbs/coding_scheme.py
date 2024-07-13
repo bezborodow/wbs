@@ -5,6 +5,10 @@ from .element import Element
 
 @dataclass
 class CodingScheme(Node):
+    '''
+    Represents a work breakdown structure coding scheme.
+    '''
+
     children: list = None
     elements: list = None
 
@@ -18,12 +22,16 @@ class CodingScheme(Node):
 
 
     def __iter__(self):
+        '''
+        Iterator for coding scheme elements.
+        '''
         return iter(self.elements)
 
 
     def append(self, name, level=0, data=None):
         '''
-        Append a new element to the WBS.
+        Append a new element to the work breakdown structure coding scheme.
+
         0 is the top level.
         '''
 
@@ -48,6 +56,13 @@ class CodingScheme(Node):
 
     @classmethod
     def fromfile(cls, file):
+        '''
+        Import a work breakdown structure from a file.
+
+        Levels are indicated by indentations of 4 spaces. Numbering is applied
+        automatically.
+        '''
+
         scheme = cls()
         for line in file:
             line = line.rstrip().expandtabs(4)

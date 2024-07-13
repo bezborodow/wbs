@@ -1,6 +1,6 @@
 [project]
 name = "wbs"
-version = "0.3.0"
+version = "1.0.0"
 authors = [
   { name="Damien Bezborodov", email="dbezborodov@gmail.com" },
 ]
@@ -18,3 +18,4 @@ keywords = ["wbs"]
 [project.urls]
 "Homepage" = "https://github.com/bezborodow/wbs"
 "Bug Tracker" = "https://github.com/bezborodow/wbs/issues"
+"Documentation" = "https://wbs.readthedocs.io/en/latest/"
